@@ -1,6 +1,9 @@
 from typing import Any
+from django.http import HttpRequest
+from django.http.response import HttpResponse as HttpResponse
 from django.views.generic.base import TemplateView
 from django.conf import settings
+import requests
 
 
 class TestTemplateView(TemplateView):
@@ -10,3 +13,25 @@ class TestTemplateView(TemplateView):
         context = super().get_context_data(**kwargs)
         context['api_key'] = settings.RAWG_API_KEY
         return context
+
+    def get(self, request, *args, **kwargs):
+        if request.htmx:
+            kwargs['search_input'] = request.GET.get('q', None)
+        context = self.get_context_data(**kwargs)
+        return self.render_to_response(context)
+    
+
+class SearchTemplateView(TemplateView):
+    template_name = 'results.html'
+
+    def get(self, request: HttpRequest, *args: Any, **kwargs: Any) -> HttpResponse:
+        if request.htmx:
+            search = request.GET.get('q', None)
+            if search:
+                url = f'{settings.RAWG_API_URL}games'
+                response = requests.get(url, params={'key': settings.RAWG_API_KEY, 'search': search, 'page_size': 10})
+                response.raise_for_status()
+                print(response.json())
+                kwargs['data'] = response.json()['results']
+        context = self.get_context_data(**kwargs)
+        return self.render_to_response(context)

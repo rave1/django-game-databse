@@ -5,8 +5,18 @@
 {% endblock title %}
 
 {% block main %}
-    <div>
-
-        <button class="btn btn-secondary bg-green-500">Button</button>
+    <div class="grid grid-cols-1 md:grid-cols-2 p-6 gap-4">
+            <input type="text"
+                    placeholder="Search for games"
+                    class="input input-bordered w-full max-w-xs" 
+                    name="q"
+                    hx-get="{% url 'game-search' %}"
+                    hx-target="#results"
+                    hx-trigger="input delay:0.2s"
+                    />
+            <button class="btn btn-secondary bg-green-500 w-full max-w-xs" type="submit">Search</button>
+            <div id="results">
+                {% include 'results.html' %}
+            </div>
     </div>
 {% endblock main %}
