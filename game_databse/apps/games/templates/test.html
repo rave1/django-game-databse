@@ -1,13 +1,11 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    {{ django|title }}
-    fjutson
-    {{ api_key }}
-</body>
-</html>
+{% extends "base.html" %}
+
+{% block title %}
+    Search a Game
+{% endblock title %}
+
+{% block main %}
+    <div>
+    Search a Game 🚀 {{api_key}}
+    </div>
+{% endblock main %}
