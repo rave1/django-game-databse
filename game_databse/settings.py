@@ -17,8 +17,7 @@ from dotenv import load_dotenv
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 sys.path.append(os.path.join(BASE_DIR, 'game_databse/apps/'))
-
-print(BASE_DIR)
+AUTH_USER_MODEL = 'accounts.User'
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.2/howto/deployment/checklist/
@@ -51,6 +50,7 @@ INSTALLED_APPS = [
     'django_htmx',
     # APPS
     'games',
+    'accounts'
 ]
 
 MIDDLEWARE = [
