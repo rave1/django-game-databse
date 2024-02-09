@@ -1,0 +1,11 @@
+{% for title in data %}
+<div class="card w-full bg-base-100 shadow-xl border">
+    <figure><img src="{{title.background_image}}" alt="Shoes" /></figure>
+    <div class="card-body">
+      <h2 class="card-title">{{title.name}}</h2>
+      <div class="card-actions justify-end">
+        <button class="btn btn-primary">Add to Library</button>
+      </div>
+    </div>
+  </div>
+{% endfor %}
