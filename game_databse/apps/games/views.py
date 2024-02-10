@@ -2,8 +2,14 @@ from typing import Any
 from django.http import HttpRequest
 from django.http.response import HttpResponse as HttpResponse
 from django.views.generic.base import TemplateView
+from django.views.generic.list import ListView
+from django.views import View
 from django.conf import settings
+from games.forms import GameForm
+from rest_framework.generics import CreateAPIView
 import requests
+from games.models import Game
+from games.serializers import GameSerializer
 
 
 class TestTemplateView(TemplateView):
@@ -31,7 +37,15 @@ class SearchTemplateView(TemplateView):
                 url = f'{settings.RAWG_API_URL}games'
                 response = requests.get(url, params={'key': settings.RAWG_API_KEY, 'search': search, 'page_size': 10})
                 response.raise_for_status()
-                print(response.json())
                 kwargs['data'] = response.json()['results']
         context = self.get_context_data(**kwargs)
         return self.render_to_response(context)
+
+
+class AddGameView(CreateAPIView):
+    queryset = Game.objects.all()
+    serializer_class = GameSerializer
+
+
+class LibraryView(ListView):
+    model = Game
