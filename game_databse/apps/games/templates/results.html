@@ -1,11 +1,18 @@
 {% for title in data %}
-<div class="card w-full bg-base-100 shadow-xl border">
-    <figure><img src="{{title.background_image}}" alt="Shoes" /></figure>
-    <div class="card-body">
-      <h2 class="card-title">{{title.name}}</h2>
-      <div class="card-actions justify-end">
-        <button class="btn btn-primary">Add to Library</button>
-      </div>
+<form hx-post="{%url 'add-game'%}" hx-swap="none">
+    {% csrf_token %}
+    <div class="card w-full bg-base-100 shadow-xl border">
+        <figure><img name="image" src="{{title.background_image}}" alt="Shoes" /></figure>
+        <div class="card-body">
+        <h2 class="card-title" name="title">{{title.name}}</h2>
+        <div class="card-actions justify-end">
+            <button class="btn btn-primary">Add to Library</button>
+            <button class="btn btn-primary">Game detail page</button>
+        </div>
+        </div>
     </div>
-  </div>
+    <input type="hidden" name="name" value="{{title.name}}">
+    <input type="hidden" name="image" value="{{title.background_image}}">
+    <input type="hidden" name="platform", value="PS5">
+</form>
 {% endfor %}
