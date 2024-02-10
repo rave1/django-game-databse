@@ -19,11 +19,11 @@
       <tbody>
         <!-- row 1 -->
         {% for game in object_list%}
-        <tr>
-          <th class="hover">1</th>
+        <tr class="hover">
+          <th class=>{{game.id}}</th>
           <td>{{game.name}}</td>
           <td>{{game.platform}}</td>
-          <td>Blue</td>
+          <td>Playing</td>
         </tr>
         {% endfor %}
       </tbody>

@@ -48,6 +48,7 @@ INSTALLED_APPS = [
     'django_browser_reload',
     # LIBS
     'django_htmx',
+    'rest_framework',
     # APPS
     'games',
     'accounts'
