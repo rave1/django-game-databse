@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+
+{% block main %}
+<form method="post" class="w-full flex justify-center">
+    {% csrf_token %}
+    <div class="h-1/2 md:w-1/2 grid grid-cols-1 gap-4 place-content-center place-items-center">
+        <h1>Login</h1>
+        <input class="input input-bordered w-full max-w-xs" type="text" placeholder="Login" name="email"/>
+        <input type="password" placeholder="Password" class="input input-bordered w-full max-w-xs" name="password" />
+        <button class="btn btn-primary">Login</button>
+    </div>
+</form>
+{% endblock main %}

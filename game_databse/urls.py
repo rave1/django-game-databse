@@ -21,5 +21,6 @@ from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('games/', include('games.urls')),
+    path('accounts/', include('accounts.urls')),
     path('__reload__/', include('django_browser_reload.urls')),
 ] + staticfiles_urlpatterns()

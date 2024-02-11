@@ -1,6 +1,10 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
-  content: ["../game_databse/apps/games/templates/*.html"],
+  content: [
+    "../game_databse/apps/games/templates/**/*.html",
+    "../game_databse/apps/games/templates/*.html",
+    "../game_databse/apps/accounts/templates/*.html"
+  ],
   theme: {
     extend: {},
   },
